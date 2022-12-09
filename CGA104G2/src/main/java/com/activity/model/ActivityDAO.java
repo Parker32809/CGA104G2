@@ -33,9 +33,10 @@ public class ActivityDAO implements ActivityDAO_interface {
 	// 有用
 	@Override
 	public Integer insert(ActivityVO activityVO) {
-		beginTranscation();
+		
 
 		try {
+			beginTranscation();
 			getSession().persist(activityVO);
 			Integer id = activityVO.getActId();
 			commit();
@@ -51,8 +52,9 @@ public class ActivityDAO implements ActivityDAO_interface {
 
 	@Override
 	public void update(ActivityVO activityVO) {
-		beginTranscation();
+		
 		 try {
+			beginTranscation();	
 			 ActivityVO vo= getSession().load(ActivityVO.class,activityVO.getActId());
 			 vo.setActType(activityVO.getActType());
 			 vo.setActName(activityVO.getActName());
@@ -76,8 +78,9 @@ public class ActivityDAO implements ActivityDAO_interface {
 
 	@Override
 	public void delete(Integer actId) {
-		beginTranscation();
+		
 		try {
+			beginTranscation();
 			ActivityVO vo = new ActivityVO();
 			vo.setActId(actId);
 			getSession().remove(vo);
